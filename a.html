@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{a}}{{b}}
+        <p v-html="rawHtml"></p>
+        <div v-bind:class="color">tetetete</div>
+        <p>{{number + 1}}</p>
+    </div>
+    <script type="text/javascript">
+    var data = {a : 1};
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            a:'aaa',
+            b:'bbb',
+            rawHtml:'<span style="color:red">this is should be red</span>',
+            color:'blue',
+            number:10,
+            ok: false
+        },
+        beforeCreate:function(){
+            console.log('beforeCreate');
+        },
+        created:function(){
+            console.log('created')
+        },
+        beforeMount:function(){
+            console.log('bm')
+        },
+        mounted:function(){
+            console.log('monted')
+        },
+        beforeUpdate:function(){
+            console.log('bU')
+        },
+        updated:function(){
+            console.log('updated')
+        }
+    });
+    data.a = "hi....new...."
+    vm.a = "aaaaa"
+    setTimeout(function(){
+        vm.a = 'AAA'
+    },3000)
+    vm.$watch('a', function(newVal, OldVal){
+        console.log
+    })
+    </script>
+    <style  type="text/css">
+    .red{
+        color: red
+    }
+    .blue{
+        color: blue;
+        font-size: 100px;
+    }
+    </style>
+</body>
+</html>
